@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Riwaj Sapkota</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--accent:#2563eb;--text:#1a1a1a;--muted:#6b7280;--border:#e5e7eb;--bg:#fff;--card:#f9fafb}
+body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
+a{color:inherit;text-decoration:none}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 2rem}
+.nav-inner{max-width:860px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:56px}
+.nav-logo{font-weight:700;font-size:1.05rem;cursor:pointer}
+.nav-links{display:flex;gap:1.5rem;font-size:.92rem;color:var(--muted)}
+.nav-links span{cursor:pointer;transition:color .2s}
+.nav-links span:hover,.nav-links span.active{color:var(--text)}
+
+.page{display:none;max-width:860px;margin:0 auto;padding:3rem 2rem 5rem}
+.page.active{display:block}
+
+footer{border-top:1px solid var(--border);padding:1.5rem 2rem;text-align:center;font-size:.83rem;color:var(--muted)}
+footer span{cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+footer span:hover{color:var(--text)}
+
+/* HOME */
+.hero{padding:4rem 0 3rem;border-bottom:1px solid var(--border);margin-bottom:3rem}
+.hero h1{font-size:2.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:.5rem}
+.hero .role{font-size:1.1rem;color:var(--accent);font-weight:500;margin-bottom:1rem}
+.hero p{color:var(--muted);max-width:520px;font-size:1rem;margin-bottom:1.5rem}
+.hero-links{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem 1.1rem;border-radius:6px;font-size:.9rem;font-weight:500;cursor:pointer;transition:all .2s;border:none}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:#1d4ed8}
+.btn-outline{border:1px solid var(--border);background:#fff;color:var(--text)}
+.btn-outline:hover{border-color:#9ca3af}
+
+/* ── BIO PAGE (modern redesign) ── */
+.bio-hero{display:flex;align-items:flex-start;gap:2.5rem;padding:3rem 0 3rem;border-bottom:1px solid var(--border);margin-bottom:3.5rem}
+.bio-avatar{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#dbeafe,#eff6ff);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;color:#93c5fd}
+.bio-hero-text h1{font-size:1.9rem;font-weight:800;letter-spacing:-.03em;margin-bottom:.3rem}
+.bio-hero-text .role{font-size:.95rem;color:var(--accent);font-weight:500;margin-bottom:.75rem}
+.bio-hero-text p{font-size:.95rem;color:var(--muted);max-width:500px;line-height:1.7}
+.bio-contact-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.contact-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .8rem;border:1px solid var(--border);border-radius:20px;font-size:.8rem;color:var(--muted);background:#fff;transition:border-color .2s,color .2s}
+.contact-chip:hover{border-color:var(--accent);color:var(--accent)}
+
+.bio-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:3rem}
+@media(max-width:600px){.bio-grid{grid-template-columns:1fr}}
+
+.bio-card{border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.bio-card-header{padding:.85rem 1.25rem;border-bottom:1px solid var(--border);background:var(--card);display:flex;align-items:center;gap:.5rem}
+.bio-card-header .icon{font-size:1rem}
+.bio-card-header h3{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.bio-card-body{padding:1.25rem}
+
+/* Timeline inside card */
+.tl-modern{display:flex;flex-direction:column;gap:0}
+.tl-modern-item{display:flex;gap:1rem;padding-bottom:1.25rem;position:relative}
+.tl-modern-item:last-child{padding-bottom:0}
+.tl-modern-item:last-child .tl-line{display:none}
+.tl-dot-wrap{display:flex;flex-direction:column;align-items:center;width:16px;flex-shrink:0;margin-top:.3rem}
+.tl-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.tl-line{width:1px;background:var(--border);flex:1;margin-top:4px}
+.tl-modern-content{flex:1;min-width:0}
+.tl-modern-content h4{font-size:.88rem;font-weight:600;line-height:1.3;margin-bottom:.15rem}
+.tl-modern-content .tl-org{font-size:.8rem;color:var(--muted);margin-bottom:.15rem}
+.tl-modern-content .tl-date-badge{display:inline-block;font-size:.72rem;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:4px;padding:.1rem .4rem}
+
+/* Skills */
+.skills-wrap{display:flex;flex-wrap:wrap;gap:.4rem}
+.skill-pill{padding:.3rem .75rem;border-radius:6px;font-size:.82rem;font-weight:500;background:var(--card);border:1px solid var(--border);color:var(--text);transition:border-color .2s,background .2s}
+.skill-pill:hover{border-color:var(--accent);background:#eff6ff;color:var(--accent)}
+
+/* Full-width section */
+.bio-full{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.bio-full-header{padding:.85rem 1.25rem;border-bottom:1px solid var(--border);background:var(--card);display:flex;align-items:center;gap:.5rem}
+.bio-full-header .icon{font-size:1rem}
+.bio-full-header h3{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.bio-full-body{padding:1.25rem}
+
+/* BLOG */
+.blog-grid{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.post-card{padding:1.25rem 1.5rem;background:#fff;cursor:pointer;transition:background .15s;border-bottom:1px solid var(--border)}
+.post-card:last-child{border-bottom:none}
+.post-card:hover{background:var(--card)}
+.post-card h3{font-size:1rem;font-weight:600;margin-bottom:.3rem}
+.post-meta{font-size:.82rem;color:var(--muted);margin-bottom:.4rem}
+.post-excerpt{font-size:.88rem;color:var(--muted)}
+.empty-state{text-align:center;padding:4rem 2rem;color:var(--muted)}
+.empty-state h3{font-size:1.1rem;margin-bottom:.5rem;color:var(--text)}
+
+/* POST */
+.post-back{display:inline-flex;align-items:center;gap:.3rem;color:var(--muted);font-size:.9rem;cursor:pointer;margin-bottom:2rem;transition:color .2s}
+.post-back:hover{color:var(--text)}
+.post-header{border-bottom:1px solid var(--border);padding-bottom:1.5rem;margin-bottom:2rem}
+.post-header h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;line-height:1.25;margin-bottom:.5rem}
+.post-content{font-size:1rem;line-height:1.8;color:#374151;white-space:pre-wrap}
+
+/* IMPRESSUM */
+.imprint-block{margin-bottom:2rem}
+.imprint-block h3{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.6rem}
+.imprint-block p{font-size:.95rem;color:var(--text);line-height:1.7}
+.imprint-block a{color:var(--accent)}
+.imprint-note{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem;font-size:.85rem;color:var(--muted);margin-top:2rem}
+
+/* ADMIN */
+.admin-login{max-width:340px;margin:4rem auto;padding:2rem;border:1px solid var(--border);border-radius:12px;background:var(--card)}
+.admin-login h2{font-size:1.2rem;font-weight:700;margin-bottom:1.5rem}
+input,textarea{width:100%;padding:.6rem .8rem;border:1px solid var(--border);border-radius:6px;font-size:.92rem;font-family:inherit;outline:none;transition:border .2s;background:#fff}
+input:focus,textarea:focus{border-color:var(--accent)}
+label{display:block;font-size:.85rem;font-weight:500;margin-bottom:.3rem}
+.form-group{margin-bottom:1rem}
+.admin-tabs{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:2rem}
+.admin-tab{flex:1;padding:.6rem 1rem;font-size:.88rem;font-weight:500;cursor:pointer;background:#fff;border:none;border-right:1px solid var(--border);color:var(--muted);transition:all .2s}
+.admin-tab:last-child{border-right:none}
+.admin-tab.active{background:var(--accent);color:#fff}
+.admin-tab-content{display:none}
+.admin-tab-content.active{display:block}
+.editor-area{padding:1.5rem;border:1px solid var(--border);border-radius:10px;background:var(--card);margin-bottom:1.5rem}
+.editor-area h3{font-size:1rem;font-weight:600;margin-bottom:1rem}
+textarea{min-height:120px;resize:vertical}
+.alert{padding:.6rem 1rem;border-radius:6px;font-size:.88rem;margin-bottom:1rem}
+.alert-success{background:#d1fae5;color:#065f46;border:1px solid #6ee7b7}
+.alert-error{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+.btn-sm{padding:.3rem .75rem;font-size:.82rem;border-radius:5px;cursor:pointer;border:1px solid var(--border);background:#fff;transition:all .15s}
+.btn-sm:hover{background:var(--card)}
+.btn-danger{color:#dc2626;border-color:#fca5a5}
+.btn-danger:hover{background:#fef2f2}
+.admin-post-item{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1rem;border:1px solid var(--border);border-radius:8px;margin-bottom:.5rem;background:#fff}
+.admin-actions{display:flex;gap:.5rem;flex-shrink:0}
+.tl-admin-item{padding:1rem;border:1px solid var(--border);border-radius:8px;background:#fff;margin-bottom:.75rem}
+.tl-admin-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.section-head h3{font-size:1rem;font-weight:600}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo" onclick="nav('home')">Riwaj Sapkota</div>
+    <div class="nav-links">
+      <span onclick="nav('home')" id="nav-home" class="active">Home</span>
+      <span onclick="nav('bio')" id="nav-bio">Bio</span>
+      <span onclick="nav('blog')" id="nav-blog">Blog</span>
+      <span onclick="nav('admin')" id="nav-admin">Admin</span>
+    </div>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <h1 id="h-name"></h1>
+    <div class="role" id="h-role"></div>
+    <p id="h-bio"></p>
+    <div class="hero-links">
+      <button class="btn btn-primary" onclick="nav('blog')">Read the Blog</button>
+      <button class="btn btn-outline" onclick="nav('bio')">About Me</button>
+    </div>
+  </div>
+  <div>
+    <h3 style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:1rem">Latest Posts</h3>
+    <div id="home-posts"></div>
+  </div>
+</div>
+
+<!-- BIO -->
+<div class="page" id="page-bio">
+  <!-- Hero strip -->
+  <div class="bio-hero">
+    <div class="bio-avatar">👤</div>
+    <div class="bio-hero-text">
+      <h1 id="bio-name"></h1>
+      <div class="role" id="bio-role"></div>
+      <p id="bio-summary"></p>
+      <div class="bio-contact-chips" id="bio-contact"></div>
+    </div>
+  </div>
+
+  <!-- Experience + Education side by side -->
+  <div class="bio-grid">
+    <div class="bio-card">
+      <div class="bio-card-header"><span class="icon">💼</span><h3>Experience</h3></div>
+      <div class="bio-card-body"><div class="tl-modern" id="bio-exp"></div></div>
+    </div>
+    <div class="bio-card">
+      <div class="bio-card-header"><span class="icon">🎓</span><h3>Education</h3></div>
+      <div class="bio-card-body"><div class="tl-modern" id="bio-edu"></div></div>
+    </div>
+  </div>
+
+  <!-- Skills full width -->
+  <div class="bio-full">
+    <div class="bio-full-header"><span class="icon">⚡</span><h3>Skills</h3></div>
+    <div class="bio-full-body"><div class="skills-wrap" id="bio-skills"></div></div>
+  </div>
+</div>
+
+<!-- BLOG -->
+<div class="page" id="page-blog">
+  <div style="font-size:1.35rem;font-weight:700;margin-bottom:1.5rem;letter-spacing:-.02em">Blog</div>
+  <div id="blog-list"></div>
+</div>
+
+<!-- POST -->
+<div class="page" id="page-post">
+  <span class="post-back" onclick="nav('blog')">← Back to Blog</span>
+  <div class="post-header">
+    <h1 id="post-title"></h1>
+    <div class="post-meta" id="post-meta"></div>
+  </div>
+  <div class="post-content" id="post-body"></div>
+</div>
+
+<!-- IMPRESSUM -->
+<div class="page" id="page-imprint">
+  <div style="font-size:1.35rem;font-weight:700;margin-bottom:1.5rem">Impressum</div>
+  <div class="imprint-block"><h3>Angaben gemäß § 5 TMG</h3><p id="imp-name"></p><p id="imp-address"></p></div>
+  <div class="imprint-block"><h3>Kontakt</h3><p>E-Mail: <a id="imp-email-link" href="#">-</a></p></div>
+  <div class="imprint-block"><h3>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h3><p id="imp-responsible"></p></div>
+  <div class="imprint-note">Diese Website wird als private, nicht-kommerzielle Internetpräsenz betrieben.<br>This website is operated as a private, non-commercial website.</div>
+</div>
+
+<!-- ADMIN -->
+<div class="page" id="page-admin">
+  <div id="admin-login-view" class="admin-login">
+    <h2>🔒 Admin Login</h2>
+    <div id="login-alert"></div>
+    <div class="form-group"><label>Password</label><input type="password" id="admin-pw" placeholder="Enter password" onkeydown="if(event.key==='Enter')doLogin()"/></div>
+    <button class="btn btn-primary" style="width:100%" onclick="doLogin()">Login</button>
+    <p style="margin-top:1rem;font-size:.8rem;color:var(--muted)">Default password: <code>admin123</code></p>
+  </div>
+  <div id="admin-panel-view" style="display:none">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+      <h2 style="font-size:1.2rem;font-weight:700">Admin Panel</h2>
+      <button class="btn btn-outline" onclick="doLogout()">Logout</button>
+    </div>
+    <div class="admin-tabs">
+      <button class="admin-tab active" onclick="switchTab('tab-home',this)">Home</button>
+      <button class="admin-tab" onclick="switchTab('tab-bio',this)">Bio</button>
+      <button class="admin-tab" onclick="switchTab('tab-blog',this)">Blog</button>
+      <button class="admin-tab" onclick="switchTab('tab-imprint',this)">Impressum</button>
+      <button class="admin-tab" onclick="switchTab('tab-settings',this)">Settings</button>
+    </div>
+
+    <!-- HOME TAB -->
+    <div class="admin-tab-content active" id="tab-home">
+      <div class="editor-area">
+        <h3>Home Page</h3><div id="home-alert"></div>
+        <div class="form-group"><label>Your Name</label><input id="a-name" type="text"/></div>
+        <div class="form-group"><label>Role / Title</label><input id="a-role" type="text"/></div>
+        <div class="form-group"><label>Short Bio</label><textarea id="a-bio" style="min-height:80px"></textarea></div>
+        <button class="btn btn-primary" onclick="saveHome()">Save Home</button>
+      </div>
+    </div>
+
+    <!-- BIO TAB -->
+    <div class="admin-tab-content" id="tab-bio">
+      <div class="editor-area">
+        <h3>Summary</h3><div id="bio-alert"></div>
+        <div class="form-group"><textarea id="a-summary" style="min-height:80px"></textarea></div>
+        <button class="btn btn-primary" onclick="saveBioSummary()">Save Summary</button>
+      </div>
+      <div class="editor-area">
+        <div class="section-head"><h3>Experience</h3><button class="btn btn-outline" onclick="addTL('exp')">+ Add</button></div>
+        <div id="admin-exp-list"></div>
+      </div>
+      <div class="editor-area">
+        <div class="section-head"><h3>Education</h3><button class="btn btn-outline" onclick="addTL('edu')">+ Add</button></div>
+        <div id="admin-edu-list"></div>
+      </div>
+      <div class="editor-area">
+        <h3>Skills</h3>
+        <div class="form-group"><input id="a-skills" type="text" placeholder="Comma-separated: Leadership, Writing, Strategy"/></div>
+        <button class="btn btn-primary" onclick="saveSkills()">Save Skills</button>
+      </div>
+      <div class="editor-area">
+        <h3>Contact</h3>
+        <div class="form-group"><label>Email</label><input id="a-email" type="text"/></div>
+        <div class="form-group"><label>Website</label><input id="a-website" type="text"/></div>
+        <div class="form-group"><label>LinkedIn</label><input id="a-linkedin" type="text"/></div>
+        <div class="form-group"><label>Other (optional)</label><input id="a-other" type="text"/></div>
+        <button class="btn btn-primary" onclick="saveContact()">Save Contact</button>
+      </div>
+    </div>
+
+    <!-- BLOG TAB -->
+    <div class="admin-tab-content" id="tab-blog">
+      <div class="editor-area">
+        <h3 id="editor-label">New Post</h3><div id="blog-alert"></div>
+        <div class="form-group"><label>Title</label><input id="e-title" type="text"/></div>
+        <div class="form-group"><label>Excerpt</label><input id="e-excerpt" type="text"/></div>
+        <div class="form-group"><label>Content</label><textarea id="e-body"></textarea></div>
+        <div style="display:flex;gap:.75rem">
+          <button class="btn btn-primary" onclick="savePost()">Save Post</button>
+          <button class="btn btn-outline" onclick="clearPostEditor()">Clear</button>
+        </div>
+      </div>
+      <div class="section-head"><h3>Published Posts</h3></div>
+      <div id="admin-post-list"></div>
+    </div>
+
+    <!-- IMPRESSUM TAB -->
+    <div class="admin-tab-content" id="tab-imprint">
+      <div class="editor-area">
+        <h3>Impressum Details</h3><div id="imprint-alert"></div>
+        <p style="font-size:.83rem;color:var(--muted);margin-bottom:1rem">Required by § 5 TMG: full name, address, and email.</p>
+        <div class="form-group"><label>Full Name</label><input id="imp-a-name" type="text"/></div>
+        <div class="form-group"><label>Street & House Number</label><input id="imp-a-street" type="text"/></div>
+        <div class="form-group"><label>Postcode & City</label><input id="imp-a-city" type="text"/></div>
+        <div class="form-group"><label>Country</label><input id="imp-a-country" type="text"/></div>
+        <div class="form-group"><label>Email</label><input id="imp-a-email" type="text"/></div>
+        <button class="btn btn-primary" onclick="saveImprint()">Save Impressum</button>
+      </div>
+    </div>
+
+    <!-- SETTINGS TAB -->
+    <div class="admin-tab-content" id="tab-settings">
+      <div class="editor-area">
+        <h3>Change Password</h3><div id="pw-alert"></div>
+        <div class="form-group"><label>Current Password</label><input id="pw-current" type="password"/></div>
+        <div class="form-group"><label>New Password</label><input id="pw-new" type="password"/></div>
+        <div class="form-group"><label>Confirm New Password</label><input id="pw-confirm" type="password"/></div>
+        <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span onclick="nav('imprint')">Impressum</span>
+</footer>
+
+<script>
+const LS={get:(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
+const DEF={
+  home:{name:'Riwaj Sapkota',role:'Professional · Writer · Thinker',bio:'Welcome to my personal corner of the internet. I write about technology, career growth, and ideas that matter.'},
+  summary:'A passionate professional with expertise in my field. I love solving complex problems, building meaningful things, and sharing what I learn.',
+  exp:[{date:'2022 – Present',title:'Senior Role',org:'Company Name',desc:'Brief description of your responsibilities.'},{date:'2019 – 2022',title:'Mid-Level Role',org:'Company Name',desc:'Brief description of your responsibilities.'}],
+  edu:[{date:'2013 – 2017',title:"Bachelor's Degree",org:'University Name',desc:'Field of Study'}],
+  skills:'Leadership, Communication, Problem Solving, Strategy, Writing, Research',
+  contact:{email:'riwaj@example.com',website:'riwajsapkota.com',linkedin:'linkedin.com/in/riwaj',other:''},
+  imprint:{name:'Riwaj Sapkota',street:'Musterstraße 1',city:'10115 Berlin',country:'Germany',email:'riwaj@example.com'}
+};
+let state={
+  home:LS.get('rs_home',DEF.home),summary:LS.get('rs_summary',DEF.summary),
+  exp:LS.get('rs_exp',DEF.exp),edu:LS.get('rs_edu',DEF.edu),
+  skills:LS.get('rs_skills',DEF.skills),contact:LS.get('rs_contact',DEF.contact),
+  posts:LS.get('rs_posts',[]),imprint:LS.get('rs_imprint',DEF.imprint)
+};
+function save(k){LS.set('rs_'+k,state[k]);}
+
+function nav(page,postId){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-links span').forEach(s=>s.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
+  const nl=document.getElementById('nav-'+page);if(nl)nl.classList.add('active');
+  window.scrollTo(0,0);
+  if(page==='home')renderHome();
+  if(page==='bio')renderBio();
+  if(page==='blog')renderBlog();
+  if(page==='post'&&postId!=null)renderPost(postId);
+  if(page==='imprint')renderImprint();
+  if(page==='admin')renderAdmin();
+}
+
+function renderHome(){
+  const h=state.home;
+  document.getElementById('h-name').textContent=h.name;
+  document.getElementById('h-role').textContent=h.role;
+  document.getElementById('h-bio').textContent=h.bio;
+  const el=document.getElementById('home-posts');
+  const recent=[...state.posts].sort((a,b)=>b.created-a.created).slice(0,3);
+  if(!recent.length){el.innerHTML='<p style="color:var(--muted);font-size:.9rem">No posts yet — check back soon!</p>';return;}
+  el.innerHTML=recent.map(p=>`<div class="post-card" onclick="nav('post',${p.id})" style="border-radius:8px;border:1px solid var(--border);margin-bottom:.5rem"><div class="post-meta">${fmtDate(p.created)}</div><h3>${esc(p.title)}</h3><p class="post-excerpt">${esc(p.excerpt||'')}</p></div>`).join('');
+}
+
+function renderBio(){
+  const h=state.home;
+  document.getElementById('bio-name').textContent=h.name;
+  document.getElementById('bio-role').textContent=h.role;
+  document.getElementById('bio-summary').textContent=state.summary;
+
+  // Timeline
+  document.getElementById('bio-exp').innerHTML=state.exp.map(tlModern).join('');
+  document.getElementById('bio-edu').innerHTML=state.edu.map(tlModern).join('');
+
+  // Skills
+  document.getElementById('bio-skills').innerHTML=state.skills.split(',').map(s=>s.trim()).filter(Boolean).map(s=>`<span class="skill-pill">${esc(s)}</span>`).join('');
+
+  // Contact chips
+  const c=state.contact;
+  const chips=[
+    c.email&&{icon:'✉',label:c.email,href:'mailto:'+c.email},
+    c.website&&{icon:'🌐',label:c.website,href:'https://'+c.website},
+    c.linkedin&&{icon:'💼',label:'LinkedIn',href:'https://'+c.linkedin},
+    c.other&&{icon:'🔗',label:c.other,href:'#'}
+  ].filter(Boolean);
+  document.getElementById('bio-contact').innerHTML=chips.map(ch=>`<a class="contact-chip" href="${ch.href}" target="_blank"><span>${ch.icon}</span>${esc(ch.label)}</a>`).join('');
+}
+
+function tlModern(item){
+  // split title/org if stored together for backwards compat
+  const title=item.title||'';
+  const org=item.org||'';
+  const desc=item.desc||'';
+  const date=item.date||'';
+  return `<div class="tl-modern-item">
+    <div class="tl-dot-wrap"><div class="tl-dot"></div><div class="tl-line"></div></div>
+    <div class="tl-modern-content">
+      <h4>${esc(title)}</h4>
+      ${org?`<div class="tl-org">${esc(org)}</div>`:''}
+      ${date?`<div class="tl-date-badge">${esc(date)}</div>`:''}
+      ${desc?`<p style="font-size:.82rem;color:var(--muted);margin-top:.35rem">${esc(desc)}</p>`:''}
+    </div>
+  </div>`;
+}
+
+function renderBlog(){
+  const el=document.getElementById('blog-list');
+  if(!state.posts.length){el.innerHTML=`<div class="empty-state"><h3>No posts yet</h3><p>Posts will appear here once published.</p></div>`;return;}
+  el.innerHTML=`<div class="blog-grid">${[...state.posts].sort((a,b)=>b.created-a.created).map(p=>`<div class="post-card" onclick="nav('post',${p.id})"><div class="post-meta">${fmtDate(p.created)}</div><h3>${esc(p.title)}</h3><p class="post-excerpt">${esc(p.excerpt||'')}</p></div>`).join('')}</div>`;
+}
+
+function renderPost(id){
+  const p=state.posts.find(x=>x.id===id);if(!p){nav('blog');return;}
+  document.getElementById('post-title').textContent=p.title;
+  document.getElementById('post-meta').textContent=fmtDate(p.created);
+  document.getElementById('post-body').textContent=p.body;
+}
+
+function renderImprint(){
+  const im=state.imprint;
+  document.getElementById('imp-name').textContent=im.name||'';
+  document.getElementById('imp-address').innerHTML=`${esc(im.street||'')}<br>${esc(im.city||'')}<br>${esc(im.country||'')}`;
+  const el=document.getElementById('imp-email-link');el.textContent=im.email||'';el.href='mailto:'+(im.email||'');
+  document.getElementById('imp-responsible').innerHTML=`${esc(im.name||'')}<br>${esc(im.street||'')}<br>${esc(im.city||'')}`;
+}
+
+const PW_KEY='rs_admin_pw',SES_KEY='rs_session';
+if(!localStorage.getItem(PW_KEY))localStorage.setItem(PW_KEY,'admin123');
+
+function doLogin(){
+  if(document.getElementById('admin-pw').value===localStorage.getItem(PW_KEY)){
+    localStorage.setItem(SES_KEY,'1');document.getElementById('admin-pw').value='';renderAdmin();
+  }else showAlert('login-alert','Incorrect password.','error');
+}
+function doLogout(){localStorage.removeItem(SES_KEY);renderAdmin();}
+
+function renderAdmin(){
+  const ok=localStorage.getItem(SES_KEY)==='1';
+  document.getElementById('admin-login-view').style.display=ok?'none':'block';
+  document.getElementById('admin-panel-view').style.display=ok?'block':'none';
+  if(!ok)return;
+  const h=state.home;
+  document.getElementById('a-name').value=h.name;document.getElementById('a-role').value=h.role;document.getElementById('a-bio').value=h.bio;
+  document.getElementById('a-summary').value=state.summary;
+  document.getElementById('a-skills').value=state.skills;
+  const c=state.contact;
+  document.getElementById('a-email').value=c.email||'';document.getElementById('a-website').value=c.website||'';
+  document.getElementById('a-linkedin').value=c.linkedin||'';document.getElementById('a-other').value=c.other||'';
+  const im=state.imprint;
+  document.getElementById('imp-a-name').value=im.name||'';document.getElementById('imp-a-street').value=im.street||'';
+  document.getElementById('imp-a-city').value=im.city||'';document.getElementById('imp-a-country').value=im.country||'';
+  document.getElementById('imp-a-email').value=im.email||'';
+  renderTLAdmin('exp');renderTLAdmin('edu');renderAdminPosts();
+}
+
+function switchTab(id,btn){
+  document.querySelectorAll('.admin-tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');btn.classList.add('active');
+}
+
+function saveHome(){state.home={name:v('a-name'),role:v('a-role'),bio:v('a-bio')};save('home');showAlert('home-alert','Saved!','success');}
+function saveBioSummary(){state.summary=v('a-summary');save('summary');showAlert('bio-alert','Saved!','success');}
+function saveSkills(){state.skills=v('a-skills');save('skills');showAlert('bio-alert','Skills saved!','success');}
+function saveContact(){state.contact={email:v('a-email'),website:v('a-website'),linkedin:v('a-linkedin'),other:v('a-other')};save('contact');showAlert('bio-alert','Contact saved!','success');}
+function saveImprint(){state.imprint={name:v('imp-a-name'),street:v('imp-a-street'),city:v('imp-a-city'),country:v('imp-a-country'),email:v('imp-a-email')};save('imprint');showAlert('imprint-alert','Impressum saved!','success');}
+
+function renderTLAdmin(type){
+  const el=document.getElementById('admin-'+type+'-list');
+  const items=state[type];
+  if(!items.length){el.innerHTML='<p style="color:var(--muted);font-size:.88rem">No entries yet.</p>';return;}
+  el.innerHTML=items.map((item,i)=>`
+    <div class="tl-admin-item">
+      <div class="tl-admin-head"><strong>${esc(item.title)||'(untitled)'}</strong>
+        <div class="admin-actions">
+          ${i>0?`<button class="btn-sm" onclick="moveTL('${type}',${i},-1)">↑</button>`:''}
+          ${i<items.length-1?`<button class="btn-sm" onclick="moveTL('${type}',${i},1)">↓</button>`:''}
+          <button class="btn-sm btn-danger" onclick="deleteTL('${type}',${i})">Remove</button>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="form-group"><label>Date Range</label><input value="${esc(item.date||'')}" oninput="updateTL('${type}',${i},'date',this.value)"/></div>
+        <div class="form-group"><label>Title</label><input value="${esc(item.title||'')}" oninput="updateTL('${type}',${i},'title',this.value)"/></div>
+      </div>
+      <div class="form-group"><label>Organization</label><input value="${esc(item.org||'')}" oninput="updateTL('${type}',${i},'org',this.value)"/></div>
+      <div class="form-group"><label>Description</label><textarea style="min-height:60px" oninput="updateTL('${type}',${i},'desc',this.value)">${esc(item.desc||'')}</textarea></div>
+    </div>`).join('');
+}
+function addTL(type){state[type].push({date:'',title:'',org:'',desc:''});save(type);renderTLAdmin(type);}
+function updateTL(type,i,field,val){state[type][i][field]=val;save(type);}
+function deleteTL(type,i){state[type].splice(i,1);save(type);renderTLAdmin(type);}
+function moveTL(type,i,dir){const a=state[type];[a[i],a[i+dir]]=[a[i+dir],a[i]];save(type);renderTLAdmin(type);}
+
+let editingId=null;
+function savePost(){
+  const title=v('e-title'),excerpt=v('e-excerpt'),body=v('e-body');
+  if(!title||!body){showAlert('blog-alert','Title and content are required.','error');return;}
+  if(editingId!==null){const p=state.posts.find(x=>x.id===editingId);if(p){p.title=title;p.excerpt=excerpt;p.body=body;}editingId=null;}
+  else state.posts.unshift({id:Date.now(),title,excerpt,body,created:Date.now()});
+  save('posts');clearPostEditor();showAlert('blog-alert','Post saved!','success');renderAdminPosts();
+}
+function editPost(id){
+  const p=state.posts.find(x=>x.id===id);if(!p)return;
+  editingId=id;document.getElementById('e-title').value=p.title;document.getElementById('e-excerpt').value=p.excerpt||'';document.getElementById('e-body').value=p.body;
+  document.getElementById('editor-label').textContent='Edit Post';
+  document.getElementById('tab-blog').querySelector('.editor-area').scrollIntoView({behavior:'smooth'});
+}
+function deletePost(id){if(!confirm('Delete this post?'))return;state.posts=state.posts.filter(x=>x.id!==id);save('posts');renderAdminPosts();}
+function clearPostEditor(){editingId=null;['e-title','e-excerpt','e-body'].forEach(id=>document.getElementById(id).value='');document.getElementById('editor-label').textContent='New Post';}
+function renderAdminPosts(){
+  const el=document.getElementById('admin-post-list');
+  if(!state.posts.length){el.innerHTML='<p style="color:var(--muted);font-size:.9rem">No posts yet.</p>';return;}
+  el.innerHTML=[...state.posts].sort((a,b)=>b.created-a.created).map(p=>`
+    <div class="admin-post-item">
+      <span>${esc(p.title)} <span style="color:var(--muted);font-size:.8rem;font-weight:400">· ${fmtDate(p.created)}</span></span>
+      <div class="admin-actions"><button class="btn-sm" onclick="editPost(${p.id})">Edit</button><button class="btn-sm btn-danger" onclick="deletePost(${p.id})">Delete</button></div>
+    </div>`).join('');
+}
+
+function changePassword(){
+  const cur=document.getElementById('pw-current').value,nw=document.getElementById('pw-new').value,cf=document.getElementById('pw-confirm').value;
+  if(cur!==localStorage.getItem(PW_KEY)){showAlert('pw-alert','Current password is wrong.','error');return;}
+  if(!nw){showAlert('pw-alert','New password cannot be empty.','error');return;}
+  if(nw!==cf){showAlert('pw-alert','Passwords do not match.','error');return;}
+  localStorage.setItem(PW_KEY,nw);['pw-current','pw-new','pw-confirm'].forEach(id=>document.getElementById(id).value='');
+  showAlert('pw-alert','Password updated!','success');
+}
+
+function v(id){return document.getElementById(id).value.trim();}
+function fmtDate(ts){return new Date(ts).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});}
+function esc(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML;}
+function showAlert(id,msg,type){const el=document.getElementById(id);el.innerHTML=`<div class="alert alert-${type}">${msg}</div>`;setTimeout(()=>el.innerHTML='',3000);}
+
+renderHome();
+</script>
+</body>
+</html>
