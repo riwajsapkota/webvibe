@@ -359,7 +359,7 @@ function nav(page,postId){
   document.getElementById('page-'+page).classList.add('active');
   const nl=document.getElementById('nav-'+page);if(nl)nl.classList.add('active');
   window.scrollTo(0,0);
-  if(page==='home')renderHome();
+  if(page==='home')loadPosts().then(() => renderHome());
   if(page==='bio')renderBio();
   if(page==='blog')renderBlog();
   if(page==='post'&&postId!=null)renderPost(postId);
@@ -443,12 +443,23 @@ function renderImprint(){
 const PW_KEY='rs_admin_pw',SES_KEY='rs_session';
 if(!localStorage.getItem(PW_KEY))localStorage.setItem(PW_KEY,'admin123');
 
-function doLogin(){
-  if(document.getElementById('admin-pw').value===localStorage.getItem(PW_KEY)){
-    localStorage.setItem(SES_KEY,'1');document.getElementById('admin-pw').value='';renderAdmin();
-  }else showAlert('login-alert','Incorrect password.','error');
+async function doLogin(){
+  const pw = document.getElementById('admin-pw').value;
+  // Verify password by attempting an authenticated request
+  showAlert('login-alert', 'Checking...', 'success');
+  try {
+    const res = await fetch(API, { method:'POST', headers:{'Content-Type':'application/json','Authorization':`Bearer ${pw}`}, body: JSON.stringify({title:'__test__',body:'__test__'}) });
+    if(res.status === 401) { showAlert('login-alert','Incorrect password.','error'); return; }
+    // If not 401, password is good — delete the test post if it was created
+    if(res.ok){ const d=await res.json(); if(d[0]?.id) await fetch(`${API}?id=${d[0].id}`,{method:'DELETE',headers:{'Authorization':`Bearer ${pw}`}}); }
+    adminPassword = pw;
+    localStorage.setItem(SES_KEY,'1');
+    document.getElementById('admin-pw').value='';
+    await loadPosts();
+    renderAdmin();
+  } catch(e){ showAlert('login-alert','Connection error.','error'); }
 }
-function doLogout(){localStorage.removeItem(SES_KEY);renderAdmin();}
+function doLogout(){ adminPassword=''; localStorage.removeItem(SES_KEY); renderAdmin(); }
 
 function renderAdmin(){
   const ok=localStorage.getItem(SES_KEY)==='1';
@@ -507,25 +518,68 @@ function updateTL(type,i,field,val){state[type][i][field]=val;save(type);}
 function deleteTL(type,i){state[type].splice(i,1);save(type);renderTLAdmin(type);}
 function moveTL(type,i,dir){const a=state[type];[a[i],a[i+dir]]=[a[i+dir],a[i]];save(type);renderTLAdmin(type);}
 
-let editingId=null;
-function savePost(){
-  const title=v('e-title'),excerpt=v('e-excerpt'),body=v('e-body');
-  if(!title||!body){showAlert('blog-alert','Title and content are required.','error');return;}
-  if(editingId!==null){const p=state.posts.find(x=>x.id===editingId);if(p){p.title=title;p.excerpt=excerpt;p.body=body;}editingId=null;}
-  else state.posts.unshift({id:Date.now(),title,excerpt,body,created:Date.now()});
-  save('posts');clearPostEditor();showAlert('blog-alert','Post saved!','success');renderAdminPosts();
+// ── API ────────────────────────────────────────
+const API = '/.netlify/functions/posts';
+let adminPassword = '';
+
+async function apiFetch(method, body, id) {
+  const url = id ? `${API}?id=${id}` : API;
+  const res = await fetch(url, {
+    method,
+    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${adminPassword}` },
+    body: body ? JSON.stringify(body) : null
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return method === 'DELETE' ? null : res.json();
 }
-function editPost(id){
-  const p=state.posts.find(x=>x.id===id);if(!p)return;
-  editingId=id;document.getElementById('e-title').value=p.title;document.getElementById('e-excerpt').value=p.excerpt||'';document.getElementById('e-body').value=p.body;
+
+async function loadPosts() {
+  try {
+    const data = await fetch(API).then(r => r.json());
+    state.posts = data.map(p => ({ id: p.id, title: p.title, excerpt: p.excerpt, body: p.body, created: new Date(p.created_at).getTime() }));
+  } catch(e) { console.error('Failed to load posts', e); }
+}
+
+let editingId = null;
+async function savePost() {
+  const title=v('e-title'), excerpt=v('e-excerpt'), body=v('e-body');
+  if(!title||!body){ showAlert('blog-alert','Title and content are required.','error'); return; }
+  showAlert('blog-alert','Saving...','success');
+  try {
+    if(editingId !== null) {
+      await apiFetch('PUT', { id: editingId, title, excerpt, body });
+    } else {
+      await apiFetch('POST', { title, excerpt, body });
+    }
+    await loadPosts();
+    clearPostEditor();
+    showAlert('blog-alert','Post saved!','success');
+    renderAdminPosts();
+  } catch(e) {
+    showAlert('blog-alert','Error saving post. Check your password.','error');
+  }
+}
+function editPost(id) {
+  const p=state.posts.find(x=>x.id===id); if(!p) return;
+  editingId=id;
+  document.getElementById('e-title').value=p.title;
+  document.getElementById('e-excerpt').value=p.excerpt||'';
+  document.getElementById('e-body').value=p.body;
   document.getElementById('editor-label').textContent='Edit Post';
   document.getElementById('tab-blog').querySelector('.editor-area').scrollIntoView({behavior:'smooth'});
 }
-function deletePost(id){if(!confirm('Delete this post?'))return;state.posts=state.posts.filter(x=>x.id!==id);save('posts');renderAdminPosts();}
-function clearPostEditor(){editingId=null;['e-title','e-excerpt','e-body'].forEach(id=>document.getElementById(id).value='');document.getElementById('editor-label').textContent='New Post';}
+async function deletePost(id) {
+  if(!confirm('Delete this post?')) return;
+  try {
+    await apiFetch('DELETE', null, id);
+    await loadPosts();
+    renderAdminPosts();
+  } catch(e) { showAlert('blog-alert','Error deleting post.','error'); }
+}
+function clearPostEditor(){ editingId=null; ['e-title','e-excerpt','e-body'].forEach(id=>document.getElementById(id).value=''); document.getElementById('editor-label').textContent='New Post'; }
 function renderAdminPosts(){
   const el=document.getElementById('admin-post-list');
-  if(!state.posts.length){el.innerHTML='<p style="color:var(--muted);font-size:.9rem">No posts yet.</p>';return;}
+  if(!state.posts.length){ el.innerHTML='<p style="color:var(--muted);font-size:.9rem">No posts yet.</p>'; return; }
   el.innerHTML=[...state.posts].sort((a,b)=>b.created-a.created).map(p=>`
     <div class="admin-post-item">
       <span>${esc(p.title)} <span style="color:var(--muted);font-size:.8rem;font-weight:400">· ${fmtDate(p.created)}</span></span>
