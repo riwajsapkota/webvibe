@@ -147,7 +147,6 @@ textarea{min-height:120px;resize:vertical}
       <span onclick="nav('home')" id="nav-home" class="active">Home</span>
       <span onclick="nav('bio')" id="nav-bio">Bio</span>
       <span onclick="nav('blog')" id="nav-blog">Blog</span>
-      <span onclick="nav('admin')" id="nav-admin">Admin</span>
     </div>
   </div>
 </nav>
@@ -360,7 +359,12 @@ function nav(page,postId){
   document.getElementById('page-'+page).classList.add('active');
   const nl=document.getElementById('nav-'+page);if(nl)nl.classList.add('active');
   window.scrollTo(0,0);
-  if(page==='home')loadPosts().then(() => renderHome());
+  if(page==='home')// Secret admin route
+function checkSecretRoute() {
+  if(window.location.hash === '#schmoopie_1985') nav('admin');
+}
+window.addEventListener('hashchange', checkSecretRoute);
+loadPosts().then(() => { renderHome(); checkSecretRoute(); });
   if(page==='bio')renderBio();
   if(page==='blog')renderBlog();
   if(page==='post'&&postId!=null)renderPost(postId);
