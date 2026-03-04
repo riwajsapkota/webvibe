@@ -10,22 +10,17 @@
 :root{--accent:#2563eb;--text:#1a1a1a;--muted:#6b7280;--border:#e5e7eb;--bg:#fff;--card:#f9fafb}
 body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.6}
 a{color:inherit;text-decoration:none}
-
 nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:0 2rem}
 .nav-inner{max-width:860px;margin:auto;display:flex;align-items:center;justify-content:space-between;height:56px}
 .nav-logo{font-weight:700;font-size:1.05rem;cursor:pointer}
 .nav-links{display:flex;gap:1.5rem;font-size:.92rem;color:var(--muted)}
 .nav-links span{cursor:pointer;transition:color .2s}
 .nav-links span:hover,.nav-links span.active{color:var(--text)}
-
 .page{display:none;max-width:860px;margin:0 auto;padding:3rem 2rem 5rem}
 .page.active{display:block}
-
 footer{border-top:1px solid var(--border);padding:1.5rem 2rem;text-align:center;font-size:.83rem;color:var(--muted)}
 footer span{cursor:pointer;text-decoration:underline;text-underline-offset:2px}
 footer span:hover{color:var(--text)}
-
-/* HOME */
 .hero{padding:4rem 0 3rem;border-bottom:1px solid var(--border);margin-bottom:3rem}
 .hero h1{font-size:2.6rem;font-weight:800;letter-spacing:-.03em;line-height:1.15;margin-bottom:.5rem}
 .hero .role{font-size:1.1rem;color:var(--accent);font-weight:500;margin-bottom:1rem}
@@ -36,8 +31,6 @@ footer span:hover{color:var(--text)}
 .btn-primary:hover{background:#1d4ed8}
 .btn-outline{border:1px solid var(--border);background:#fff;color:var(--text)}
 .btn-outline:hover{border-color:#9ca3af}
-
-/* ── BIO PAGE (modern redesign) ── */
 .bio-hero{display:flex;align-items:flex-start;gap:2.5rem;padding:3rem 0 3rem;border-bottom:1px solid var(--border);margin-bottom:3.5rem}
 .bio-avatar{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#dbeafe,#eff6ff);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:2rem;flex-shrink:0;color:#93c5fd}
 .bio-hero-text h1{font-size:1.9rem;font-weight:800;letter-spacing:-.03em;margin-bottom:.3rem}
@@ -46,17 +39,13 @@ footer span:hover{color:var(--text)}
 .bio-contact-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
 .contact-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .8rem;border:1px solid var(--border);border-radius:20px;font-size:.8rem;color:var(--muted);background:#fff;transition:border-color .2s,color .2s}
 .contact-chip:hover{border-color:var(--accent);color:var(--accent)}
-
 .bio-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-bottom:3rem}
 @media(max-width:600px){.bio-grid{grid-template-columns:1fr}}
-
 .bio-card{border:1px solid var(--border);border-radius:12px;overflow:hidden}
 .bio-card-header{padding:.85rem 1.25rem;border-bottom:1px solid var(--border);background:var(--card);display:flex;align-items:center;gap:.5rem}
 .bio-card-header .icon{font-size:1rem}
 .bio-card-header h3{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 .bio-card-body{padding:1.25rem}
-
-/* Timeline inside card */
 .tl-modern{display:flex;flex-direction:column;gap:0}
 .tl-modern-item{display:flex;gap:1rem;padding-bottom:1.25rem;position:relative}
 .tl-modern-item:last-child{padding-bottom:0}
@@ -68,20 +57,14 @@ footer span:hover{color:var(--text)}
 .tl-modern-content h4{font-size:.88rem;font-weight:600;line-height:1.3;margin-bottom:.15rem}
 .tl-modern-content .tl-org{font-size:.8rem;color:var(--muted);margin-bottom:.15rem}
 .tl-modern-content .tl-date-badge{display:inline-block;font-size:.72rem;color:var(--muted);background:var(--card);border:1px solid var(--border);border-radius:4px;padding:.1rem .4rem}
-
-/* Skills */
-.skills-wrap{display:flex;flex-wrap:wrap;gap:.4rem}
-.skill-pill{padding:.3rem .75rem;border-radius:6px;font-size:.82rem;font-weight:500;background:var(--card);border:1px solid var(--border);color:var(--text);transition:border-color .2s,background .2s}
-.skill-pill:hover{border-color:var(--accent);background:#eff6ff;color:var(--accent)}
-
-/* Full-width section */
 .bio-full{border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
 .bio-full-header{padding:.85rem 1.25rem;border-bottom:1px solid var(--border);background:var(--card);display:flex;align-items:center;gap:.5rem}
 .bio-full-header .icon{font-size:1rem}
 .bio-full-header h3{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
 .bio-full-body{padding:1.25rem}
-
-/* BLOG */
+.skills-wrap{display:flex;flex-wrap:wrap;gap:.4rem}
+.skill-pill{padding:.3rem .75rem;border-radius:6px;font-size:.82rem;font-weight:500;background:var(--card);border:1px solid var(--border);color:var(--text);transition:border-color .2s,background .2s}
+.skill-pill:hover{border-color:var(--accent);background:#eff6ff;color:var(--accent)}
 .blog-grid{display:flex;flex-direction:column;border:1px solid var(--border);border-radius:10px;overflow:hidden}
 .post-card{padding:1.25rem 1.5rem;background:#fff;cursor:pointer;transition:background .15s;border-bottom:1px solid var(--border)}
 .post-card:last-child{border-bottom:none}
@@ -91,22 +74,16 @@ footer span:hover{color:var(--text)}
 .post-excerpt{font-size:.88rem;color:var(--muted)}
 .empty-state{text-align:center;padding:4rem 2rem;color:var(--muted)}
 .empty-state h3{font-size:1.1rem;margin-bottom:.5rem;color:var(--text)}
-
-/* POST */
 .post-back{display:inline-flex;align-items:center;gap:.3rem;color:var(--muted);font-size:.9rem;cursor:pointer;margin-bottom:2rem;transition:color .2s}
 .post-back:hover{color:var(--text)}
 .post-header{border-bottom:1px solid var(--border);padding-bottom:1.5rem;margin-bottom:2rem}
 .post-header h1{font-size:2rem;font-weight:800;letter-spacing:-.03em;line-height:1.25;margin-bottom:.5rem}
 .post-content{font-size:1rem;line-height:1.8;color:#374151;white-space:pre-wrap}
-
-/* IMPRESSUM */
 .imprint-block{margin-bottom:2rem}
 .imprint-block h3{font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:.6rem}
 .imprint-block p{font-size:.95rem;color:var(--text);line-height:1.7}
 .imprint-block a{color:var(--accent)}
 .imprint-note{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:1rem 1.2rem;font-size:.85rem;color:var(--muted);margin-top:2rem}
-
-/* ADMIN */
 .admin-login{max-width:340px;margin:4rem auto;padding:2rem;border:1px solid var(--border);border-radius:12px;background:var(--card)}
 .admin-login h2{font-size:1.2rem;font-weight:700;margin-bottom:1.5rem}
 input,textarea{width:100%;padding:.6rem .8rem;border:1px solid var(--border);border-radius:6px;font-size:.92rem;font-family:inherit;outline:none;transition:border .2s;background:#fff}
@@ -114,7 +91,7 @@ input:focus,textarea:focus{border-color:var(--accent)}
 label{display:block;font-size:.85rem;font-weight:500;margin-bottom:.3rem}
 .form-group{margin-bottom:1rem}
 .admin-tabs{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:2rem}
-.admin-tab{flex:1;padding:.6rem 1rem;font-size:.88rem;font-weight:500;cursor:pointer;background:#fff;border:none;border-right:1px solid var(--border);color:var(--muted);transition:all .2s}
+.admin-tab{flex:1;padding:.6rem .5rem;font-size:.82rem;font-weight:500;cursor:pointer;background:#fff;border:none;border-right:1px solid var(--border);color:var(--muted);transition:all .2s}
 .admin-tab:last-child{border-right:none}
 .admin-tab.active{background:var(--accent);color:#fff}
 .admin-tab-content{display:none}
@@ -136,6 +113,7 @@ textarea{min-height:120px;resize:vertical}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
 .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
 .section-head h3{font-size:1rem;font-weight:600}
+.loading{text-align:center;padding:4rem;color:var(--muted);font-size:.95rem}
 </style>
 </head>
 <body>
@@ -153,51 +131,12 @@ textarea{min-height:120px;resize:vertical}
 
 <!-- HOME -->
 <div class="page active" id="page-home">
-  <div class="hero">
-    <h1 id="h-name"></h1>
-    <div class="role" id="h-role"></div>
-    <p id="h-bio"></p>
-    <div class="hero-links">
-      <button class="btn btn-primary" onclick="nav('blog')">Read the Blog</button>
-      <button class="btn btn-outline" onclick="nav('bio')">About Me</button>
-    </div>
-  </div>
-  <div>
-    <h3 style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:1rem">Latest Posts</h3>
-    <div id="home-posts"></div>
-  </div>
+  <div class="loading">Loading...</div>
 </div>
 
 <!-- BIO -->
 <div class="page" id="page-bio">
-  <!-- Hero strip -->
-  <div class="bio-hero">
-    <div class="bio-avatar">👤</div>
-    <div class="bio-hero-text">
-      <h1 id="bio-name"></h1>
-      <div class="role" id="bio-role"></div>
-      <p id="bio-summary"></p>
-      <div class="bio-contact-chips" id="bio-contact"></div>
-    </div>
-  </div>
-
-  <!-- Experience + Education side by side -->
-  <div class="bio-grid">
-    <div class="bio-card">
-      <div class="bio-card-header"><span class="icon">💼</span><h3>Experience</h3></div>
-      <div class="bio-card-body"><div class="tl-modern" id="bio-exp"></div></div>
-    </div>
-    <div class="bio-card">
-      <div class="bio-card-header"><span class="icon">🎓</span><h3>Education</h3></div>
-      <div class="bio-card-body"><div class="tl-modern" id="bio-edu"></div></div>
-    </div>
-  </div>
-
-  <!-- Skills full width -->
-  <div class="bio-full">
-    <div class="bio-full-header"><span class="icon">⚡</span><h3>Skills</h3></div>
-    <div class="bio-full-body"><div class="skills-wrap" id="bio-skills"></div></div>
-  </div>
+  <div class="loading">Loading...</div>
 </div>
 
 <!-- BLOG -->
@@ -209,10 +148,7 @@ textarea{min-height:120px;resize:vertical}
 <!-- POST -->
 <div class="page" id="page-post">
   <span class="post-back" onclick="nav('blog')">← Back to Blog</span>
-  <div class="post-header">
-    <h1 id="post-title"></h1>
-    <div class="post-meta" id="post-meta"></div>
-  </div>
+  <div class="post-header"><h1 id="post-title"></h1><div class="post-meta" id="post-meta"></div></div>
   <div class="post-content" id="post-body"></div>
 </div>
 
@@ -243,7 +179,6 @@ textarea{min-height:120px;resize:vertical}
       <button class="admin-tab" onclick="switchTab('tab-bio',this)">Bio</button>
       <button class="admin-tab" onclick="switchTab('tab-blog',this)">Blog</button>
       <button class="admin-tab" onclick="switchTab('tab-imprint',this)">Impressum</button>
-      <button class="admin-tab" onclick="switchTab('tab-settings',this)">Settings</button>
     </div>
 
     <!-- HOME TAB -->
@@ -253,7 +188,7 @@ textarea{min-height:120px;resize:vertical}
         <div class="form-group"><label>Your Name</label><input id="a-name" type="text"/></div>
         <div class="form-group"><label>Role / Title</label><input id="a-role" type="text"/></div>
         <div class="form-group"><label>Short Bio</label><textarea id="a-bio" style="min-height:80px"></textarea></div>
-        <button class="btn btn-primary" onclick="saveHome()">Save Home</button>
+        <button class="btn btn-primary" onclick="saveConfig('home')">Save Home</button>
       </div>
     </div>
 
@@ -262,20 +197,22 @@ textarea{min-height:120px;resize:vertical}
       <div class="editor-area">
         <h3>Summary</h3><div id="bio-alert"></div>
         <div class="form-group"><textarea id="a-summary" style="min-height:80px"></textarea></div>
-        <button class="btn btn-primary" onclick="saveBioSummary()">Save Summary</button>
+        <button class="btn btn-primary" onclick="saveConfig('summary')">Save Summary</button>
       </div>
       <div class="editor-area">
         <div class="section-head"><h3>Experience</h3><button class="btn btn-outline" onclick="addTL('exp')">+ Add</button></div>
         <div id="admin-exp-list"></div>
+        <button class="btn btn-primary" style="margin-top:.75rem" onclick="saveConfig('exp')">Save Experience</button>
       </div>
       <div class="editor-area">
         <div class="section-head"><h3>Education</h3><button class="btn btn-outline" onclick="addTL('edu')">+ Add</button></div>
         <div id="admin-edu-list"></div>
+        <button class="btn btn-primary" style="margin-top:.75rem" onclick="saveConfig('edu')">Save Education</button>
       </div>
       <div class="editor-area">
         <h3>Skills</h3>
         <div class="form-group"><input id="a-skills" type="text" placeholder="Comma-separated: Leadership, Writing, Strategy"/></div>
-        <button class="btn btn-primary" onclick="saveSkills()">Save Skills</button>
+        <button class="btn btn-primary" onclick="saveConfig('skills')">Save Skills</button>
       </div>
       <div class="editor-area">
         <h3>Contact</h3>
@@ -283,7 +220,7 @@ textarea{min-height:120px;resize:vertical}
         <div class="form-group"><label>Website</label><input id="a-website" type="text"/></div>
         <div class="form-group"><label>LinkedIn</label><input id="a-linkedin" type="text"/></div>
         <div class="form-group"><label>Other (optional)</label><input id="a-other" type="text"/></div>
-        <button class="btn btn-primary" onclick="saveContact()">Save Contact</button>
+        <button class="btn btn-primary" onclick="saveConfig('contact')">Save Contact</button>
       </div>
     </div>
 
@@ -307,200 +244,255 @@ textarea{min-height:120px;resize:vertical}
     <div class="admin-tab-content" id="tab-imprint">
       <div class="editor-area">
         <h3>Impressum Details</h3><div id="imprint-alert"></div>
-        <p style="font-size:.83rem;color:var(--muted);margin-bottom:1rem">Required by § 5 TMG: full name, address, and email.</p>
         <div class="form-group"><label>Full Name</label><input id="imp-a-name" type="text"/></div>
         <div class="form-group"><label>Street & House Number</label><input id="imp-a-street" type="text"/></div>
         <div class="form-group"><label>Postcode & City</label><input id="imp-a-city" type="text"/></div>
         <div class="form-group"><label>Country</label><input id="imp-a-country" type="text"/></div>
         <div class="form-group"><label>Email</label><input id="imp-a-email" type="text"/></div>
-        <button class="btn btn-primary" onclick="saveImprint()">Save Impressum</button>
-      </div>
-    </div>
-
-    <!-- SETTINGS TAB -->
-    <div class="admin-tab-content" id="tab-settings">
-      <div class="editor-area">
-        <h3>Change Password</h3><div id="pw-alert"></div>
-        <div class="form-group"><label>Current Password</label><input id="pw-current" type="password"/></div>
-        <div class="form-group"><label>New Password</label><input id="pw-new" type="password"/></div>
-        <div class="form-group"><label>Confirm New Password</label><input id="pw-confirm" type="password"/></div>
-        <button class="btn btn-primary" onclick="changePassword()">Update Password</button>
+        <button class="btn btn-primary" onclick="saveConfig('imprint')">Save Impressum</button>
       </div>
     </div>
   </div>
 </div>
 
-<footer>
-  <span onclick="nav('imprint')">Impressum</span>
-</footer>
+<footer><span onclick="nav('imprint')">Impressum</span></footer>
 
 <script>
-const LS={get:(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
-const DEF={
-  home:{name:'Riwaj Sapkota',role:'Business · Tech · Society',bio:'Welcome to my personal corner of the internet. I write about technology, career growth, and ideas that matter.'},
-  summary:'A passionate professional with expertise in my field. I love solving complex problems, building meaningful things, and sharing what I learn.',
-  exp:[{date:'2022 – Present',title:'Senior Role',org:'Company Name',desc:'Brief description of your responsibilities.'},{date:'2019 – 2022',title:'Mid-Level Role',org:'Company Name',desc:'Brief description of your responsibilities.'}],
-  edu:[{date:'2013 – 2017',title:"Bachelor's Degree",org:'University Name',desc:'Field of Study'}],
-  skills:'Leadership, Communication, Problem Solving, Strategy, Writing, Research',
-  contact:{email:'riwaj@example.com',website:'riwajsapkota.com',linkedin:'linkedin.com/in/riwaj',other:''},
-  imprint:{name:'Riwaj Sapkota',street:'Musterstraße 1',city:'10115 Berlin',country:'Germany',email:'riwaj@example.com'}
-};
-let state={
-  home:LS.get('rs_home',DEF.home),summary:LS.get('rs_summary',DEF.summary),
-  exp:LS.get('rs_exp',DEF.exp),edu:LS.get('rs_edu',DEF.edu),
-  skills:LS.get('rs_skills',DEF.skills),contact:LS.get('rs_contact',DEF.contact),
-  posts:LS.get('rs_posts',[]),imprint:LS.get('rs_imprint',DEF.imprint)
-};
-function save(k){LS.set('rs_'+k,state[k]);}
+const API = '/.netlify/functions/posts';
+let adminPassword = '';
 
-function nav(page,postId){
+// ── Default content ────────────────────────────
+const DEF = {
+  home: { name:'Riwaj Sapkota', role:'Professional · Writer · Thinker', bio:'Welcome to my personal corner of the internet.' },
+  summary: 'A passionate professional. I love solving complex problems and sharing what I learn.',
+  exp: [{ date:'2022 – Present', title:'Senior Role', org:'Company Name', desc:'Your responsibilities here.' }],
+  edu: [{ date:'2013 – 2017', title:"Bachelor's Degree", org:'University Name', desc:'Field of Study' }],
+  skills: 'Leadership, Communication, Problem Solving, Strategy, Writing',
+  contact: { email:'', website:'', linkedin:'', other:'' },
+  imprint: { name:'', street:'', city:'', country:'Germany', email:'' }
+};
+
+let state = { posts:[], config: {...DEF} };
+
+// ── API helpers ────────────────────────────────
+async function apiFetch(method, body, id, resource='posts') {
+  const url = id ? `${API}?resource=${resource}&id=${id}` : `${API}?resource=${resource}`;
+  const res = await fetch(url, {
+    method,
+    headers: { 'Content-Type':'application/json', 'Authorization':`Bearer ${adminPassword}` },
+    body: body ? JSON.stringify(body) : null
+  });
+  if (!res.ok) throw new Error(await res.text());
+  return method === 'DELETE' ? null : res.json();
+}
+
+async function loadPosts() {
+  try {
+    const data = await fetch(`${API}?resource=posts`).then(r=>r.json());
+    state.posts = (data||[]).map(p=>({ id:p.id, title:p.title, excerpt:p.excerpt, body:p.body, created:new Date(p.created_at).getTime() }));
+  } catch(e) { console.error('Failed to load posts', e); }
+}
+
+async function loadConfig() {
+  try {
+    const data = await fetch(`${API}?resource=config`).then(r=>r.json());
+    // Merge fetched config over defaults
+    Object.keys(DEF).forEach(k => {
+      if (data[k] !== undefined) state.config[k] = data[k];
+    });
+  } catch(e) { console.error('Failed to load config', e); }
+}
+
+async function saveConfig(key) {
+  const value = getConfigValue(key);
+  const alertId = ['home'].includes(key)?'home-alert':['summary','exp','edu','skills','contact'].includes(key)?'bio-alert':'imprint-alert';
+  try {
+    await apiFetch('POST', { key, value }, null, 'config');
+    state.config[key] = value;
+    showAlert(alertId, 'Saved!', 'success');
+    // Re-render the relevant public page
+    if(key==='home') renderHome();
+    if(['summary','exp','edu','skills','contact'].includes(key)) renderBio();
+    if(key==='imprint') renderImprint();
+  } catch(e) { showAlert(alertId, 'Error saving.', 'error'); }
+}
+
+function getConfigValue(key) {
+  if(key==='home') return { name:v('a-name'), role:v('a-role'), bio:v('a-bio') };
+  if(key==='summary') return v('a-summary');
+  if(key==='exp') return state.config.exp;
+  if(key==='edu') return state.config.edu;
+  if(key==='skills') return v('a-skills');
+  if(key==='contact') return { email:v('a-email'), website:v('a-website'), linkedin:v('a-linkedin'), other:v('a-other') };
+  if(key==='imprint') return { name:v('imp-a-name'), street:v('imp-a-street'), city:v('imp-a-city'), country:v('imp-a-country'), email:v('imp-a-email') };
+}
+
+// ── Nav ────────────────────────────────────────
+function nav(page, postId) {
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-links span').forEach(s=>s.classList.remove('active'));
   document.getElementById('page-'+page).classList.add('active');
-  const nl=document.getElementById('nav-'+page);if(nl)nl.classList.add('active');
+  const nl=document.getElementById('nav-'+page); if(nl) nl.classList.add('active');
   window.scrollTo(0,0);
-  if(page==='home')// Secret admin route
-function checkSecretRoute() {
-  if(window.location.hash === '#schmoopie_1985') nav('admin');
-}
-window.addEventListener('hashchange', checkSecretRoute);
-loadPosts().then(() => { renderHome(); checkSecretRoute(); });
-  if(page==='bio')renderBio();
-  if(page==='blog')renderBlog();
-  if(page==='post'&&postId!=null)renderPost(postId);
-  if(page==='imprint')renderImprint();
-  if(page==='admin')renderAdmin();
+  if(page==='home') renderHome();
+  if(page==='bio') renderBio();
+  if(page==='blog') renderBlog();
+  if(page==='post'&&postId!=null) renderPost(postId);
+  if(page==='imprint') renderImprint();
+  if(page==='admin') renderAdmin();
 }
 
-function renderHome(){
-  const h=state.home;
-  document.getElementById('h-name').textContent=h.name;
-  document.getElementById('h-role').textContent=h.role;
-  document.getElementById('h-bio').textContent=h.bio;
-  const el=document.getElementById('home-posts');
-  const recent=[...state.posts].sort((a,b)=>b.created-a.created).slice(0,3);
-  if(!recent.length){el.innerHTML='<p style="color:var(--muted);font-size:.9rem">No posts yet — check back soon!</p>';return;}
-  el.innerHTML=recent.map(p=>`<div class="post-card" onclick="nav('post',${p.id})" style="border-radius:8px;border:1px solid var(--border);margin-bottom:.5rem"><div class="post-meta">${fmtDate(p.created)}</div><h3>${esc(p.title)}</h3><p class="post-excerpt">${esc(p.excerpt||'')}</p></div>`).join('');
+// ── Render: Home ───────────────────────────────
+function renderHome() {
+  const h = state.config.home;
+  document.getElementById('page-home').innerHTML = `
+    <div class="hero">
+      <h1>${esc(h.name)}</h1>
+      <div class="role">${esc(h.role)}</div>
+      <p>${esc(h.bio)}</p>
+      <div class="hero-links">
+        <button class="btn btn-primary" onclick="nav('blog')">Read the Blog</button>
+        <button class="btn btn-outline" onclick="nav('bio')">About Me</button>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:1rem">Latest Posts</h3>
+      <div id="home-posts"></div>
+    </div>`;
+  const el = document.getElementById('home-posts');
+  const recent = [...state.posts].sort((a,b)=>b.created-a.created).slice(0,3);
+  if(!recent.length){ el.innerHTML='<p style="color:var(--muted);font-size:.9rem">No posts yet — check back soon!</p>'; return; }
+  el.innerHTML = recent.map(p=>`<div class="post-card" onclick="nav('post',${p.id})" style="border-radius:8px;border:1px solid var(--border);margin-bottom:.5rem"><div class="post-meta">${fmtDate(p.created)}</div><h3>${esc(p.title)}</h3><p class="post-excerpt">${esc(p.excerpt||'')}</p></div>`).join('');
 }
 
-function renderBio(){
-  const h=state.home;
-  document.getElementById('bio-name').textContent=h.name;
-  document.getElementById('bio-role').textContent=h.role;
-  document.getElementById('bio-summary').textContent=state.summary;
-
-  // Timeline
-  document.getElementById('bio-exp').innerHTML=state.exp.map(tlModern).join('');
-  document.getElementById('bio-edu').innerHTML=state.edu.map(tlModern).join('');
-
-  // Skills
-  document.getElementById('bio-skills').innerHTML=state.skills.split(',').map(s=>s.trim()).filter(Boolean).map(s=>`<span class="skill-pill">${esc(s)}</span>`).join('');
-
-  // Contact chips
-  const c=state.contact;
+// ── Render: Bio ────────────────────────────────
+function renderBio() {
+  const h=state.config.home, c=state.config.contact;
   const chips=[
     c.email&&{icon:'✉',label:c.email,href:'mailto:'+c.email},
     c.website&&{icon:'🌐',label:c.website,href:'https://'+c.website},
     c.linkedin&&{icon:'💼',label:'LinkedIn',href:'https://'+c.linkedin},
     c.other&&{icon:'🔗',label:c.other,href:'#'}
   ].filter(Boolean);
-  document.getElementById('bio-contact').innerHTML=chips.map(ch=>`<a class="contact-chip" href="${ch.href}" target="_blank"><span>${ch.icon}</span>${esc(ch.label)}</a>`).join('');
+
+  document.getElementById('page-bio').innerHTML = `
+    <div class="bio-hero">
+      <div class="bio-avatar">👤</div>
+      <div class="bio-hero-text">
+        <h1>${esc(h.name)}</h1>
+        <div class="role">${esc(h.role)}</div>
+        <p>${esc(state.config.summary)}</p>
+        <div class="bio-contact-chips">${chips.map(ch=>`<a class="contact-chip" href="${ch.href}" target="_blank"><span>${ch.icon}</span>${esc(ch.label)}</a>`).join('')}</div>
+      </div>
+    </div>
+    <div class="bio-grid">
+      <div class="bio-card">
+        <div class="bio-card-header"><span class="icon">💼</span><h3>Experience</h3></div>
+        <div class="bio-card-body"><div class="tl-modern">${state.config.exp.map(tlModern).join('')}</div></div>
+      </div>
+      <div class="bio-card">
+        <div class="bio-card-header"><span class="icon">🎓</span><h3>Education</h3></div>
+        <div class="bio-card-body"><div class="tl-modern">${state.config.edu.map(tlModern).join('')}</div></div>
+      </div>
+    </div>
+    <div class="bio-full">
+      <div class="bio-full-header"><span class="icon">⚡</span><h3>Skills</h3></div>
+      <div class="bio-full-body"><div class="skills-wrap">${state.config.skills.split(',').map(s=>s.trim()).filter(Boolean).map(s=>`<span class="skill-pill">${esc(s)}</span>`).join('')}</div></div>
+    </div>`;
 }
 
-function tlModern(item){
-  // split title/org if stored together for backwards compat
-  const title=item.title||'';
-  const org=item.org||'';
-  const desc=item.desc||'';
-  const date=item.date||'';
+function tlModern(item) {
   return `<div class="tl-modern-item">
     <div class="tl-dot-wrap"><div class="tl-dot"></div><div class="tl-line"></div></div>
     <div class="tl-modern-content">
-      <h4>${esc(title)}</h4>
-      ${org?`<div class="tl-org">${esc(org)}</div>`:''}
-      ${date?`<div class="tl-date-badge">${esc(date)}</div>`:''}
-      ${desc?`<p style="font-size:.82rem;color:var(--muted);margin-top:.35rem">${esc(desc)}</p>`:''}
+      <h4>${esc(item.title)}</h4>
+      ${item.org?`<div class="tl-org">${esc(item.org)}</div>`:''}
+      ${item.date?`<div class="tl-date-badge">${esc(item.date)}</div>`:''}
+      ${item.desc?`<p style="font-size:.82rem;color:var(--muted);margin-top:.35rem">${esc(item.desc)}</p>`:''}
     </div>
   </div>`;
 }
 
-function renderBlog(){
+// ── Render: Blog ───────────────────────────────
+function renderBlog() {
   const el=document.getElementById('blog-list');
-  if(!state.posts.length){el.innerHTML=`<div class="empty-state"><h3>No posts yet</h3><p>Posts will appear here once published.</p></div>`;return;}
+  if(!state.posts.length){ el.innerHTML=`<div class="empty-state"><h3>No posts yet</h3><p>Posts will appear here once published.</p></div>`; return; }
   el.innerHTML=`<div class="blog-grid">${[...state.posts].sort((a,b)=>b.created-a.created).map(p=>`<div class="post-card" onclick="nav('post',${p.id})"><div class="post-meta">${fmtDate(p.created)}</div><h3>${esc(p.title)}</h3><p class="post-excerpt">${esc(p.excerpt||'')}</p></div>`).join('')}</div>`;
 }
 
-function renderPost(id){
-  const p=state.posts.find(x=>x.id===id);if(!p){nav('blog');return;}
+function renderPost(id) {
+  const p=state.posts.find(x=>x.id===id); if(!p){nav('blog');return;}
   document.getElementById('post-title').textContent=p.title;
   document.getElementById('post-meta').textContent=fmtDate(p.created);
   document.getElementById('post-body').textContent=p.body;
 }
 
-function renderImprint(){
-  const im=state.imprint;
+// ── Render: Impressum ──────────────────────────
+function renderImprint() {
+  const im=state.config.imprint;
   document.getElementById('imp-name').textContent=im.name||'';
   document.getElementById('imp-address').innerHTML=`${esc(im.street||'')}<br>${esc(im.city||'')}<br>${esc(im.country||'')}`;
-  const el=document.getElementById('imp-email-link');el.textContent=im.email||'';el.href='mailto:'+(im.email||'');
+  const el=document.getElementById('imp-email-link'); el.textContent=im.email||''; el.href='mailto:'+(im.email||'');
   document.getElementById('imp-responsible').innerHTML=`${esc(im.name||'')}<br>${esc(im.street||'')}<br>${esc(im.city||'')}`;
 }
 
-const PW_KEY='rs_admin_pw',SES_KEY='rs_session';
-if(!localStorage.getItem(PW_KEY))localStorage.setItem(PW_KEY,'admin123');
+// ── Admin ──────────────────────────────────────
+const SES_KEY='rs_session';
 
-async function doLogin(){
-  const pw = document.getElementById('admin-pw').value;
-  // Verify password by attempting an authenticated request
-  showAlert('login-alert', 'Checking...', 'success');
+async function doLogin() {
+  const pw=document.getElementById('admin-pw').value;
+  showAlert('login-alert','Checking...','success');
   try {
-    const res = await fetch(API, { method:'POST', headers:{'Content-Type':'application/json','Authorization':`Bearer ${pw}`}, body: JSON.stringify({title:'__test__',body:'__test__'}) });
-    if(res.status === 401) { showAlert('login-alert','Incorrect password.','error'); return; }
-    // If not 401, password is good — delete the test post if it was created
-    if(res.ok){ const d=await res.json(); if(d[0]?.id) await fetch(`${API}?id=${d[0].id}`,{method:'DELETE',headers:{'Authorization':`Bearer ${pw}`}}); }
-    adminPassword = pw;
-    localStorage.setItem(SES_KEY,'1');
+    const res=await fetch(`${API}?resource=config`, { method:'POST', headers:{'Content-Type':'application/json','Authorization':`Bearer ${pw}`}, body:JSON.stringify({key:'__test__',value:true}) });
+    if(res.status===401){ showAlert('login-alert','Incorrect password.','error'); return; }
+    if(res.status===429){ showAlert('login-alert','Too many attempts. Try again in 15 minutes.','error'); return; }
+    // clean up test entry
+    await fetch(`${API}?resource=config`, { method:'POST', headers:{'Content-Type':'application/json','Authorization':`Bearer ${pw}`}, body:JSON.stringify({key:'__test__',value:null}) });
+    adminPassword=pw;
+    sessionStorage.setItem(SES_KEY,'1');
     document.getElementById('admin-pw').value='';
-    await loadPosts();
     renderAdmin();
   } catch(e){ showAlert('login-alert','Connection error.','error'); }
 }
-function doLogout(){ adminPassword=''; localStorage.removeItem(SES_KEY); renderAdmin(); }
 
-function renderAdmin(){
-  const ok=localStorage.getItem(SES_KEY)==='1';
+function doLogout(){ adminPassword=''; sessionStorage.removeItem(SES_KEY); renderAdmin(); }
+
+function renderAdmin() {
+  const ok=sessionStorage.getItem(SES_KEY)==='1'&&adminPassword!=='';
   document.getElementById('admin-login-view').style.display=ok?'none':'block';
   document.getElementById('admin-panel-view').style.display=ok?'block':'none';
-  if(!ok)return;
-  const h=state.home;
-  document.getElementById('a-name').value=h.name;document.getElementById('a-role').value=h.role;document.getElementById('a-bio').value=h.bio;
-  document.getElementById('a-summary').value=state.summary;
-  document.getElementById('a-skills').value=state.skills;
-  const c=state.contact;
-  document.getElementById('a-email').value=c.email||'';document.getElementById('a-website').value=c.website||'';
-  document.getElementById('a-linkedin').value=c.linkedin||'';document.getElementById('a-other').value=c.other||'';
-  const im=state.imprint;
-  document.getElementById('imp-a-name').value=im.name||'';document.getElementById('imp-a-street').value=im.street||'';
-  document.getElementById('imp-a-city').value=im.city||'';document.getElementById('imp-a-country').value=im.country||'';
+  if(!ok) return;
+  const h=state.config.home;
+  document.getElementById('a-name').value=h.name||'';
+  document.getElementById('a-role').value=h.role||'';
+  document.getElementById('a-bio').value=h.bio||'';
+  document.getElementById('a-summary').value=state.config.summary||'';
+  document.getElementById('a-skills').value=state.config.skills||'';
+  const c=state.config.contact;
+  document.getElementById('a-email').value=c.email||'';
+  document.getElementById('a-website').value=c.website||'';
+  document.getElementById('a-linkedin').value=c.linkedin||'';
+  document.getElementById('a-other').value=c.other||'';
+  const im=state.config.imprint;
+  document.getElementById('imp-a-name').value=im.name||'';
+  document.getElementById('imp-a-street').value=im.street||'';
+  document.getElementById('imp-a-city').value=im.city||'';
+  document.getElementById('imp-a-country').value=im.country||'';
   document.getElementById('imp-a-email').value=im.email||'';
-  renderTLAdmin('exp');renderTLAdmin('edu');renderAdminPosts();
+  renderTLAdmin('exp'); renderTLAdmin('edu'); renderAdminPosts();
 }
 
 function switchTab(id,btn){
   document.querySelectorAll('.admin-tab-content').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');btn.classList.add('active');
+  document.getElementById(id).classList.add('active'); btn.classList.add('active');
 }
 
-function saveHome(){state.home={name:v('a-name'),role:v('a-role'),bio:v('a-bio')};save('home');showAlert('home-alert','Saved!','success');}
-function saveBioSummary(){state.summary=v('a-summary');save('summary');showAlert('bio-alert','Saved!','success');}
-function saveSkills(){state.skills=v('a-skills');save('skills');showAlert('bio-alert','Skills saved!','success');}
-function saveContact(){state.contact={email:v('a-email'),website:v('a-website'),linkedin:v('a-linkedin'),other:v('a-other')};save('contact');showAlert('bio-alert','Contact saved!','success');}
-function saveImprint(){state.imprint={name:v('imp-a-name'),street:v('imp-a-street'),city:v('imp-a-city'),country:v('imp-a-country'),email:v('imp-a-email')};save('imprint');showAlert('imprint-alert','Impressum saved!','success');}
-
-function renderTLAdmin(type){
+// Timeline admin
+function renderTLAdmin(type) {
   const el=document.getElementById('admin-'+type+'-list');
-  const items=state[type];
-  if(!items.length){el.innerHTML='<p style="color:var(--muted);font-size:.88rem">No entries yet.</p>';return;}
+  const items=state.config[type];
+  if(!items.length){ el.innerHTML='<p style="color:var(--muted);font-size:.88rem">No entries yet.</p>'; return; }
   el.innerHTML=items.map((item,i)=>`
     <div class="tl-admin-item">
       <div class="tl-admin-head"><strong>${esc(item.title)||'(untitled)'}</strong>
@@ -511,60 +503,34 @@ function renderTLAdmin(type){
         </div>
       </div>
       <div class="row2">
-        <div class="form-group"><label>Date Range</label><input value="${esc(item.date||'')}" oninput="updateTL('${type}',${i},'date',this.value)"/></div>
+        <div class="form-group"><label>Date</label><input value="${esc(item.date||'')}" oninput="updateTL('${type}',${i},'date',this.value)"/></div>
         <div class="form-group"><label>Title</label><input value="${esc(item.title||'')}" oninput="updateTL('${type}',${i},'title',this.value)"/></div>
       </div>
       <div class="form-group"><label>Organization</label><input value="${esc(item.org||'')}" oninput="updateTL('${type}',${i},'org',this.value)"/></div>
       <div class="form-group"><label>Description</label><textarea style="min-height:60px" oninput="updateTL('${type}',${i},'desc',this.value)">${esc(item.desc||'')}</textarea></div>
     </div>`).join('');
 }
-function addTL(type){state[type].push({date:'',title:'',org:'',desc:''});save(type);renderTLAdmin(type);}
-function updateTL(type,i,field,val){state[type][i][field]=val;save(type);}
-function deleteTL(type,i){state[type].splice(i,1);save(type);renderTLAdmin(type);}
-function moveTL(type,i,dir){const a=state[type];[a[i],a[i+dir]]=[a[i+dir],a[i]];save(type);renderTLAdmin(type);}
+function addTL(type){ state.config[type].push({date:'',title:'',org:'',desc:''}); renderTLAdmin(type); }
+function updateTL(type,i,field,val){ state.config[type][i][field]=val; }
+function deleteTL(type,i){ state.config[type].splice(i,1); renderTLAdmin(type); }
+function moveTL(type,i,dir){ const a=state.config[type]; [a[i],a[i+dir]]=[a[i+dir],a[i]]; renderTLAdmin(type); }
 
-// ── API ────────────────────────────────────────
-const API = '/.netlify/functions/posts';
-let adminPassword = '';
-
-async function apiFetch(method, body, id) {
-  const url = id ? `${API}?id=${id}` : API;
-  const res = await fetch(url, {
-    method,
-    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${adminPassword}` },
-    body: body ? JSON.stringify(body) : null
-  });
-  if (!res.ok) throw new Error(await res.text());
-  return method === 'DELETE' ? null : res.json();
-}
-
-async function loadPosts() {
-  try {
-    const data = await fetch(API).then(r => r.json());
-    state.posts = data.map(p => ({ id: p.id, title: p.title, excerpt: p.excerpt, body: p.body, created: new Date(p.created_at).getTime() }));
-  } catch(e) { console.error('Failed to load posts', e); }
-}
-
-let editingId = null;
+// Blog
+let editingId=null;
 async function savePost() {
   const title=v('e-title'), excerpt=v('e-excerpt'), body=v('e-body');
   if(!title||!body){ showAlert('blog-alert','Title and content are required.','error'); return; }
   showAlert('blog-alert','Saving...','success');
   try {
-    if(editingId !== null) {
-      await apiFetch('PUT', { id: editingId, title, excerpt, body });
-    } else {
-      await apiFetch('POST', { title, excerpt, body });
-    }
+    if(editingId!==null){ await apiFetch('PUT',{id:editingId,title,excerpt,body}); }
+    else { await apiFetch('POST',{title,excerpt,body}); }
     await loadPosts();
     clearPostEditor();
     showAlert('blog-alert','Post saved!','success');
     renderAdminPosts();
-  } catch(e) {
-    showAlert('blog-alert','Error saving post. Check your password.','error');
-  }
+  } catch(e){ showAlert('blog-alert','Error saving post.','error'); }
 }
-function editPost(id) {
+function editPost(id){
   const p=state.posts.find(x=>x.id===id); if(!p) return;
   editingId=id;
   document.getElementById('e-title').value=p.title;
@@ -573,13 +539,10 @@ function editPost(id) {
   document.getElementById('editor-label').textContent='Edit Post';
   document.getElementById('tab-blog').querySelector('.editor-area').scrollIntoView({behavior:'smooth'});
 }
-async function deletePost(id) {
+async function deletePost(id){
   if(!confirm('Delete this post?')) return;
-  try {
-    await apiFetch('DELETE', null, id);
-    await loadPosts();
-    renderAdminPosts();
-  } catch(e) { showAlert('blog-alert','Error deleting post.','error'); }
+  try{ await apiFetch('DELETE',null,id); await loadPosts(); renderAdminPosts(); }
+  catch(e){ showAlert('blog-alert','Error deleting post.','error'); }
 }
 function clearPostEditor(){ editingId=null; ['e-title','e-excerpt','e-body'].forEach(id=>document.getElementById(id).value=''); document.getElementById('editor-label').textContent='New Post'; }
 function renderAdminPosts(){
@@ -592,21 +555,21 @@ function renderAdminPosts(){
     </div>`).join('');
 }
 
-function changePassword(){
-  const cur=document.getElementById('pw-current').value,nw=document.getElementById('pw-new').value,cf=document.getElementById('pw-confirm').value;
-  if(cur!==localStorage.getItem(PW_KEY)){showAlert('pw-alert','Current password is wrong.','error');return;}
-  if(!nw){showAlert('pw-alert','New password cannot be empty.','error');return;}
-  if(nw!==cf){showAlert('pw-alert','Passwords do not match.','error');return;}
-  localStorage.setItem(PW_KEY,nw);['pw-current','pw-new','pw-confirm'].forEach(id=>document.getElementById(id).value='');
-  showAlert('pw-alert','Password updated!','success');
-}
+// ── Helpers ────────────────────────────────────
+function v(id){ return document.getElementById(id).value.trim(); }
+function fmtDate(ts){ return new Date(ts).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'}); }
+function esc(s){ const d=document.createElement('div'); d.textContent=s||''; return d.innerHTML; }
+function showAlert(id,msg,type){ const el=document.getElementById(id); el.innerHTML=`<div class="alert alert-${type}">${msg}</div>`; setTimeout(()=>el.innerHTML='',3000); }
 
-function v(id){return document.getElementById(id).value.trim();}
-function fmtDate(ts){return new Date(ts).toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});}
-function esc(s){const d=document.createElement('div');d.textContent=s||'';return d.innerHTML;}
-function showAlert(id,msg,type){const el=document.getElementById(id);el.innerHTML=`<div class="alert alert-${type}">${msg}</div>`;setTimeout(()=>el.innerHTML='',3000);}
+// Secret admin route
+function checkSecretRoute(){ if(window.location.hash==='#schmoopie_1985') nav('admin'); }
+window.addEventListener('hashchange', checkSecretRoute);
 
-renderHome();
+// Init — load everything from Supabase then render
+Promise.all([loadPosts(), loadConfig()]).then(() => {
+  renderHome();
+  checkSecretRoute();
+});
 </script>
 </body>
 </html>
