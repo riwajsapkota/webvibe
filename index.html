@@ -109,7 +109,8 @@ textarea{min-height:120px;resize:vertical}
 .admin-post-item{display:flex;align-items:center;justify-content:space-between;padding:.85rem 1rem;border:1px solid var(--border);border-radius:8px;margin-bottom:.5rem;background:#fff}
 .admin-actions{display:flex;gap:.5rem;flex-shrink:0}
 .tl-admin-item{padding:1rem;border:1px solid var(--border);border-radius:8px;background:#fff;margin-bottom:.75rem}
-.tl-admin-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
+.tl-admin-head{display:flex;justify-content:space-between;align-items:flex-start;gap:.5rem;margin-bottom:.75rem}
+.tl-admin-head strong{font-size:.92rem;flex:1;min-width:0;word-break:break-word}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
 .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
 .section-head h3{font-size:1rem;font-weight:600}
@@ -320,8 +321,8 @@ async function saveConfig(key) {
 function getConfigValue(key) {
   if(key==='home') return { name:v('a-name'), role:v('a-role'), bio:v('a-bio') };
   if(key==='summary') return v('a-summary');
-  if(key==='exp') return state.config.exp;
-  if(key==='edu') return state.config.edu;
+  if(key==='exp') return state.config.exp; // full array from state
+  if(key==='edu') return state.config.edu; // full array from state
   if(key==='skills') return v('a-skills');
   if(key==='contact') return { email:v('a-email'), website:v('a-website'), linkedin:v('a-linkedin'), other:v('a-other') };
   if(key==='imprint') return { name:v('imp-a-name'), street:v('imp-a-street'), city:v('imp-a-city'), country:v('imp-a-country'), email:v('imp-a-email') };
